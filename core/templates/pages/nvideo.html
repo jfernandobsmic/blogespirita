@@ -1,0 +1,40 @@
+{% extends 'bbase.html' %}
+{% load static %}
+{% block content %}
+    {% include 'header/hvideos.html' %}
+        <section id="videos" class="section-features light-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <div class="section-title">
+                                    <h2>Videos</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overlay"></div>
+                    <div class="container">
+                       <div class="row">
+                            {% for v in videos %}
+                                <div class="col-md-6 col-sm-12">
+                                     <div class="home-info">
+                                          <h1>{{v.video}}</h1>
+                                          <h2>{{v.subtitulo}}</h2>
+                                          <p>{{v.descricao}}</p>
+                                     </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                     <div class="home-video">
+                                          <div class="embed-responsive embed-responsive-16by9">
+                                               <iframe src="https://www.youtube.com/embed/{{v.url}}" frameborder="0" allowfullscreen></iframe>
+                                          </div>
+                                     </div>
+                                    <br>
+                                </div>
+                            {% endfor %}
+                       </div>
+                  </div>
+        </section>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'bbase.html'%}
+{% load static %}
+{% block content %}
+		{% include 'header/hmusicas.html' %}
+		<section id="team" class="light-bg">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 text-center">
+								<div class="section-title">
+									<h2>Músicas que nos trazem inspirações para a nossas almas</h2>
+									<p> Aqui você vai encontras as melhores músicas que nós despera muita paz</p>
+								</div>
+							</div>
+							<div class="row justify-content-end">
+								<form autocomplete="on" action="{% url 'pmusica' %}" method="GET">
+									{% csrf_token %}
+									<div class="col-md-4">
+										<div class="form-group">
+											 <select class="form-control" name="opcao" id="opcao">
+												<option value="0" selected>Selecione uma opção</option>
+												<option value="1">Ano</option>
+												<option value="2">Cantor(a)</option>
+												<option value="3">Música</option>
+											  </select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Informe o nome do palestrante, ou tema ou ano" name="resposta" id="resposta"
+													   required="" data-validation-required-message="Informe o nome do palestrante">
+												<p class="help-block text-danger"></p>
+										</div>
+									</div>
+									<div class="col-md-1 text-center">
+										<div id="success"></div>
+										<button type="submit" class="btn">Localizar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+						<br><br>
+						<div class="row">
+							{% for musica in page_obj %}
+								<div class="col-md-4">
+									<div class="team-item">
+										<div class="team-image">
+											<div class="embed-responsive embed-responsive-16by9">
+												<iframe src="{{musica.url}}" title="YouTube video player" frameborder="0"
+														allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+														gyroscope; picture-in-picture; web-share"
+														referrerpolicy="strict-origin-when-cross-origin"
+														allowfullscreen></iframe>
+											</div>
+										</div>
+										<div class="team-text">
+											<h3>{{ musica.subtitulo }}</h3>
+											<div class="team-position">{{ musica.cantor }}</div>
+											<p>{{ musica.descricao }}</p>
+											<div class="team-socials">
+												<a href="{{ musica.youtube }}" target="_blank"><i class="fa fa-youtube"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								{% if is_paginated %}
+									<nav class="navigation pagination text-center">
+										<div class="nav-links">
+											{% if page_obj.has_previous %}
+												<a class="page-numbers page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+											{% else %}
+												<a class="page-numbers page-link disabled" href="#">&laquo;</a>
+											{% endif %}
+
+											{% for num in paginator.page_range %}
+												{% if page_obj.number == num %}
+													<a class="page-numbers current page-link" href="#">{{ num }}</a>
+												{% else %}
+													<a class="page-numbers page-link" href="?page={{ num }}">{{ num }}</a>
+												{% endif %}
+											{% endfor %}
+
+											{% if page_obj.has_next %}
+												<a class="page-numbers page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+											{% else %}
+												<a class="page-numbers page-link" href="#">&raquo;</a>
+											{% endif %}
+										</div>
+									</nav>
+								{% endif%}
+							</div>
+						</div>
+					</div>
+				</section>
+{% endblock %}

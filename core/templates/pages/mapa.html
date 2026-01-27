@@ -1,0 +1,20 @@
+<div class="col-sm-12">
+    <br>
+    <div id="mapDiv" class="gmap"></div>
+</div>
+
+<script>
+    var lat = {{ centro.latitude | safe }};
+    var lon = {{ centro.longitude | safe }};
+    var map = L.map('mapDiv').setView([lat, lon], 13); //0 até 18
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+    }).addTo(map);
+
+
+        var marker = L.marker([{{ centro.latitude | safe}}, {{ centro.longitude | safe}}]).addTo(map);
+        marker.bindPopup("<b>{{ centro.nome }}</b><br/>{{ centro.endereco }}-{{ centro.bairro }}-{{ centro.cidade }}").openPopup();
+
+</script>

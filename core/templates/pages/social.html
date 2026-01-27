@@ -1,0 +1,61 @@
+{% extends 'bbase.html' %}
+{% load static %}
+{% block content %}
+    {% include 'header/hcentros.html' %}
+    <section id="features" class="section-features">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                      <div class="section-title">
+                          <h2>Atividades do Bem</h2>
+                          <p><strong>Venha conhecer e participar das atividades do bem que realizamos em nossa casa,
+                              as tarefas sociais em um centro espírita são a materialização do princípio da caridade e
+                              do amor ao próximo, pilares fundamentais da Doutrina Espírita.
+                              Elas visam a assistência material e espiritual, bem como o desenvolvimento comunitário.
+                            </strong></p>
+                      </div>
+                  </div>
+              </div>
+              <div class="row row-gutter">
+                  {% for social in sociais %}
+                      <div class="col-md-4 col-gutter">
+                          <div class="featured-item">
+                              <div class="featured-icon"><i><img src="{{ social.icon.url }}"></i></div>
+                              <div class="featured-text">
+                                  <h3>{{ social.atividade }}</h3>
+                                  <p>{{ social.descricao}}</p>
+                                  <h4>Dia e Horário:</h4>
+                                  <p>{{ social.dia }} às {{ social.hora }}</p>
+                                  <h4>Coordenação:</h4>
+                                  <p>{{ social.responsavel }}</p>
+                              </div>
+                          </div>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                      </div>
+                  {% endfor %}
+              </div>
+              <hr>
+              {% for centro in centro %}
+                  <div class="featured-item">
+                      <div class="featured-icon"><i><img src="{% static '/icon/mobile_64.png' %}"></i></div>
+                      <div class="featured-text">
+                          <h3>Contato para mais informações</h3>
+                          <h4>{{ centro.telefone }}</h4>
+                          <p>{{ social.contato }}</p>
+                      </div>
+                  </div>
+                  <div class="featured-item">
+                      <div class="featured-icon"><i><img src="{% static '/icon/map_64.png' %}"></i></div>
+                      <div class="featured-text">
+                          <h3>Localização</h3>
+                      </div>
+                       {% include 'pages/mapa.html' %}
+                  </div>
+              {% endfor %}
+          </div>
+      </section>
+{% endblock %}
