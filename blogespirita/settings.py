@@ -89,7 +89,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'blogespirita',
-        'USER': 'postgres',
+        'USER': 'jfbs',
         'PASSWORD': 'jfbs2007',
         'HOST': 'localhost',
         'PORT': '',
