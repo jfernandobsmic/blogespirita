@@ -14,7 +14,6 @@ django-static==1.5.6
 django-stdimage==6.0.2
 frozenlist==1.8.0
 geoip2==5.2.0
-gunicorn==24.1.1
 idna==3.11
 maxminddb==3.0.0
 multidict==6.7.0
@@ -28,5 +27,4 @@ sqlparse==0.5.5
 typing_extensions==4.15.0
 tzdata==2025.2
 urllib3==2.6.3
-whitenoise==6.11.0
 yarl==1.22.0
