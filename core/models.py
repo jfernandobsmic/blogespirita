@@ -175,7 +175,7 @@ class Destaque(Base):
 class Social(Base):
     atividade = models.CharField('Atividade', max_length=150, blank=True)
     descricao = models.TextField('Descrição', max_length=500, blank=True)
-    dia = models.CharField('Dia', max_length=250,  blank=True)
+    dia = models.CharField('Dia', max_length=250, blank=True)
     hora = models.CharField('Hora', blank=True)
     responsavel = models.CharField('Resposável', max_length=100, blank=True)
     contato = models.CharField('Contato', max_length=20, blank=True)
@@ -198,7 +198,7 @@ class Centro(Base):
     cidade = models.CharField('Cidade', max_length=100)
     cep = models.CharField('CEP', max_length=50, blank=True)
     latitude = models.DecimalField('Latitude', max_digits=12, decimal_places=6, default=0, blank=True)
-    longitude = models.DecimalField('Longitude', max_digits=12, decimal_places=6, default=0,  blank=True)
+    longitude = models.DecimalField('Longitude', max_digits=12, decimal_places=6, default=0, blank=True)
     ano = models.CharField('Ano', max_length=4, blank=True)
     missao = models.TextField('Missao', max_length=400, blank=True)
     url = models.URLField('Url', max_length=100, blank=True)
@@ -232,3 +232,16 @@ class Temas(Base):
     def __str__(self):
         return self.tema
 
+
+class Materia(Base):
+    materia = models.CharField('Materia', max_length=255)
+    conteudo = models.TextField('Conteúdo')
+    autor = models.CharField('Autor', max_length=200, blank=True)
+    tema_id = models.ForeignKey('core.Temas', verbose_name='Temas', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Materia'
+        verbose_name_plural = 'Materias'
+
+    def __str__(self):
+        return self.materia

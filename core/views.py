@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
-from .models import Centro, Social, Evento, Musica, Video, Livro, Citacao, Temas
+from .models import Centro, Social, Evento, Musica, Video, Livro, Citacao, Temas, Materia
 
 
 def index(request):
@@ -195,3 +195,12 @@ def citacao(request, id):
     for l in nm_livro:
         livro = l.titulo
     return render(request, 'pages/citacao.html', {'citacoes': at_citacao, 'livro': livro})
+
+
+def materia(request, id):
+    tema = ''
+    at_materia = Materia.objects.filter(tema_id=id)
+    nm_tema = Temas.objects.filter(id=id)
+    for l in nm_tema:
+        tema = l.tema
+    return render(request, 'pages/materias.html', {'materias': at_materia, 'tema': tema})

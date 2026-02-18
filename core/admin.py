@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Mensagem, Livro, Musica, Video, Evento, Destaque, Social, Centro, Citacao, Temas
+from .models import Mensagem, Livro, Musica, Video, Evento, Destaque, Social, Centro, Citacao, Temas, Materia
 
 
 @admin.register(Mensagem)
@@ -15,6 +15,11 @@ class LivroAdmin(admin.ModelAdmin):
 @admin.register(Citacao)
 class CiatcaoAdmin(admin.ModelAdmin):
     list_display = ['titulo', 'citacao', 'autor', 'livro_id']
+
+
+@admin.register(Materia)
+class MateriaAdmin(admin.ModelAdmin):
+    list_display = ['materia', 'conteudo', 'autor', 'tema_id']
 
 
 @admin.register(Musica)
