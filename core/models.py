@@ -139,7 +139,7 @@ class Video(Base):
 
 class Evento(Base):
     evento = models.CharField('Evento', max_length=100)
-    descricao = models.TextField('Descricao', max_length=500)
+    descricao = models.TextField('Descricao')
     palestrante = models.CharField('Palestrante', max_length=100)
     endereco = models.CharField('Endereço', max_length=200)
     bairro = models.CharField('Bairro', max_length=60)
