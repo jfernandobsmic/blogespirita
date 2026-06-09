@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
-from .models import Centro, Social, Evento, Musica, Video, Livro, Citacao, Temas, Materia
+from .models import Centro, Social, Evento, Musica, Video, Livro, Citacao, Temas, Materia, Mensagem
 
 
 def index(request):
     eventos = Evento.objects.all().order_by('evento').all()
     musicas = Musica.objects.all()
+    mensagens = Mensagem.objects.all()
     videos = Video.objects.all()
     eventos = Evento.objects.all()
     centros = Centro.objects.all()
@@ -20,8 +21,40 @@ def index(request):
                    'ct_eventos': ct_evento, 'ct_centros': ct_centro})
 
 
-def mensagem(request):
-    return render(request, 'pages/mensagem.html')
+class MensagemView(ListView):
+    template_name = 'pages/mensagem.html'
+    model = Mensagem
+    paginate_by = 6
+    ordering = 'autor'
+
+    def get_context_data(self, **kwargs):
+        context = super(MensagemView, self).get_context_data(**kwargs)
+        context['mensagens'] = Mensagem.objects.all()
+
+        return context
+
+
+class PMensagem(ListView):
+    template_name = 'pages/mensagem.html'
+    model = Musica
+    paginate_by = 6
+    ordering = 'autor'
+
+    def get_queryset(self):
+
+        contexto = super().get_queryset()
+
+        opcao = self.request.GET.get('opcao')
+        resposta = str(self.request.GET.get('resposta')).capitalize()
+
+        if opcao == '1':
+            mensagem = contexto.filter(autor=resposta).order_by('autor').all()
+        elif opcao == '2':
+            mensagem = contexto.filter(tema__icontains=resposta).all()
+        else:
+            mensagem = Mensagem.objects.all()
+
+        return mensagem
 
 
 def evento(request):
@@ -36,7 +69,7 @@ class MusicaView(ListView):
     ordering = 'cantor'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(MusicaView, self).get_context_data(**kwargs)
         context['musicas'] = Musica.objects.all()
 
         return context
@@ -62,7 +95,7 @@ class PMusica(ListView):
         elif opcao == '3':
             musica = contexto.filter(subtitulo__icontains=resposta).all()
         else:
-            musica = Video.objects.all().all()
+            musica = Musica.objects.all()
 
         return musica
 
@@ -100,7 +133,7 @@ class PVideo(ListView):
         elif opcao == '3':
             video = contexto.filter(subtitulo__icontains=resposta).all()
         else:
-            video = Video.objects.all().all()
+            video = Video.objects.all()
 
         return video
 
@@ -145,7 +178,7 @@ class PLivro(ListView):
 class CentroView(ListView):
     template_name = 'pages/centros.html'
     model = Centro
-    paginate_by = 3
+    paginate_by = 6
     ordering = 'nome'
 
     def get_context_data(self, **kwargs):
@@ -158,7 +191,7 @@ class CentroView(ListView):
 class PCentro(ListView):
     template_name = 'pages/centros.html'
     model = Centro
-    paginate_by = 3
+    paginate_by = 6
     ordering = 'nome'
 
     def get_queryset(self):
@@ -204,3 +237,13 @@ def materia(request, id):
     for l in nm_tema:
         tema = l.tema
     return render(request, 'pages/materias.html', {'materias': at_materia, 'tema': tema})
+
+
+def conteudo(request, id):
+    conteudos = ''
+    autor = ''
+    at_mensagem = Mensagem.objects.filter(id=id)
+    print(at_mensagem)
+    for ct in at_mensagem:
+        autor = ct.autor
+    return render(request, 'pages/conteudo.html', {'conteudos': at_mensagem, 'autor': autor})

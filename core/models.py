@@ -50,9 +50,13 @@ class Base(models.Model):
 
 class Mensagem(Base):
     titulo = models.CharField('Titulo', max_length=100)
-    mensagem = models.TextField('Mensagem', max_length=500)
-    autor = models.CharField('Autor', max_length=60)
-    fonte = models.CharField('Fonte', max_length=100)
+    mensagem = models.TextField('Mensagem')
+    autor = models.CharField('Autor', max_length=100)
+    espirito = models.CharField('Espírito', max_length=100, blank=True)
+    fonte = models.CharField('Fonte', max_length=100, blank=True)
+    urlInstagram = models.URLField('Url', max_length=120, blank=True)
+    urlFacebook = models.URLField('Url', max_length=120, blank=True)
+    urlYoutube = models.URLField('Url', max_length=120, blank=True)
     imagem = StdImageField('Imagem', upload_to='media', variations={'thumb': (124, 124)})
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
 

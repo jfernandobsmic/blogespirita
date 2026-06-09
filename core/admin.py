@@ -4,7 +4,8 @@ from .models import Mensagem, Livro, Musica, Video, Evento, Destaque, Social, Ce
 
 @admin.register(Mensagem)
 class MensagemAdmin(admin.ModelAdmin):
-    list_display = ['titulo', 'mensagem', 'autor', 'fonte', 'imagem', 'slug']
+    list_display = ['titulo', 'mensagem', 'autor', 'espirito', 'fonte', 'urlInstagram',
+                    'urlFacebook', 'urlYoutube', 'imagem', 'slug']
 
 
 @admin.register(Livro)
