@@ -57,7 +57,7 @@ class Mensagem(Base):
     urlInstagram = models.URLField('Url', max_length=120, blank=True)
     urlFacebook = models.URLField('Url', max_length=120, blank=True)
     urlYoutube = models.URLField('Url', max_length=120, blank=True)
-    imagem = StdImageField('Imagem', upload_to='media', variations={'thumb': (124, 124)})
+    imagem = StdImageField('Imagem', upload_to='media')
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
 
     class Meta:
