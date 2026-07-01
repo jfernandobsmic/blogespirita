@@ -1,6 +1,7 @@
 from django.urls import path
 from core.views import index, social, citacao, evento, materia, conteudo
-from .views import CentroView, VideoView, MusicaView, LivroView, MensagemView, PCentro, PVideo, PMusica, PLivro
+from .views import (CentroView, VideoView, MusicaView, LivroView, MensagemView, PCentro, PVideo, PMusica, PLivro,
+                    PMensagem)
 
 urlpatterns = [
     path('', index, name='index'),
@@ -16,6 +17,7 @@ urlpatterns = [
     path('conteudo/<int:id>', conteudo, name='conteudo'),
     path('pcentro', PCentro.as_view(), name='pcentro'),
     path('pvideo', PVideo.as_view(), name='pvideo'),
+    path('pmensagem', PMensagem.as_view(), name='pmensagem'),
     path('pmusica', PMusica.as_view(), name='pmusica'),
     path('plivro', PLivro.as_view(), name='plivro'),
 ]

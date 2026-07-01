@@ -18,12 +18,19 @@
                     {% for ct in conteudos %}
                       <div class="col-md-12 col-gutter">
                           <div class="featured-item">
-                              <div class="featured-icon"><i class="fa fa-newspaper-o"></i></div>
+                              <div class="team-image">
+                                  <img src="{% static '/icon/quotation-mark.png' %}" class="img-responsive" alt="author">
+                              </div>
+                              <!--<div class="featured-icon"><i class="fa fa-newspaper-o"></i></div>-->
                               <div class="featured-text">
                                   <h3 style="font-size: 2.3rem; font-family: 'Roboto'">{{ ct.titulo }}</h3>
                                   <p class="text-justify" style="font-size: 2rem; line-height: 1.5;
                                     margin-bottom: 20px; font-family: 'Roboto">{{ ct.mensagem|linebreaksbr }}</p>
-                                  <h4 class="text-right">{{ct.autor}}</h4>
+                                  {% if ct.autor == 'Chico Xavier'%}
+                                    <h4 class="text-right">{{ct.autor}} / {{ct.espirito}}</h4>
+                                  {% else %}
+                                    <h4 class="text-right">{{ct.autor}}</h4>
+                                  {% endif %}
                               </div>
                           </div>
                           <br>
