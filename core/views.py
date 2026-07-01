@@ -243,7 +243,6 @@ def conteudo(request, id):
     conteudos = ''
     autor = ''
     at_mensagem = Mensagem.objects.filter(id=id)
-    print(at_mensagem)
     for ct in at_mensagem:
         autor = ct.autor
     return render(request, 'pages/conteudo.html', {'conteudos': at_mensagem, 'autor': autor})
