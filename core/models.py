@@ -50,6 +50,7 @@ class Base(models.Model):
 
 class Mensagem(Base):
     titulo = models.CharField('Titulo', max_length=100)
+    subtitulo = models.CharField('Titulo', max_length=100)
     mensagem = models.TextField('Mensagem')
     autor = models.CharField('Autor', max_length=100)
     espirito = models.CharField('Espírito', max_length=100, blank=True)
