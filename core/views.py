@@ -36,7 +36,7 @@ class MensagemView(ListView):
 
 class PMensagem(ListView):
     template_name = 'pages/mensagem.html'
-    model = Musica
+    model = Mensagem
     paginate_by = 6
     ordering = 'autor'
 
@@ -48,9 +48,11 @@ class PMensagem(ListView):
         resposta = str(self.request.GET.get('resposta')).capitalize()
 
         if opcao == '1':
-            mensagem = contexto.filter(autor=resposta).order_by('autor').all()
+            mensagem = contexto.filter(autor__icontains=resposta).order_by('autor').all()
         elif opcao == '2':
-            mensagem = contexto.filter(tema__icontains=resposta).all()
+            mensagem = contexto.filter(livro__icontains=resposta).all()
+        elif opcao == '3':
+            mensagem = contexto.filter(titulo__icontains=resposta).all()
         else:
             mensagem = Mensagem.objects.all()
 

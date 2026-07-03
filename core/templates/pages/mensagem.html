@@ -20,14 +20,14 @@
 											 <select class="form-control" name="opcao" id="opcao">
 												<option value="0" selected>Selecione uma opção</option>
 												<option value="1">Autor</option>
-												<option value="2">Tema</option>
+											 	<option value="2">Livro</option>
+												<option value="3">Tema</option>
 											  </select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Informe o nome do autor, ou tema" name="resposta" id="resposta"
-													   required="" data-validation-required-message="Informe o nome do palestrante">
+											<input type="text" class="form-control" placeholder="Informe o nome do autor, do livro ou tema" name="resposta" id="resposta">
 												<p class="help-block text-danger"></p>
 										</div>
 									</div>
@@ -38,9 +38,10 @@
 								</form>
 							</div>
 						</div>
+						<br><br>
 						<div class="row">
 							{% for mensagem in page_obj %}
-								<div class="col-md-4">
+								<div class="col-md-3">
 									<div class="mz-module">
 										<div class="team-item">
 											<div class="team-image">
@@ -48,6 +49,8 @@
 											</div>
 											<div class="team-text">
 												<h3>{{mensagem.titulo}}</h3>
+												<h4>{{mensagem.subtitulo}}</h4>
+												<h4>{{mensagem.livro}}</h4>
 												<div class="team-position">{{mensagem.autor}}</div>
 												<div class="team-socials">
 													{% if mensagem.urlInstagram != '' %}
@@ -71,9 +74,10 @@
 											</div>
 											<a href="{% url 'conteudo' mensagem.id %}" class="mz-module-button">Leia a Mensagem</a>
 										</div>
+
 									</div>
+									<br><br>
 								</div>
-							<br><br>
 							{% endfor %}
 						</div>
 						<div class="row">
