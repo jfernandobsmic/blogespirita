@@ -180,7 +180,7 @@ class PLivro(ListView):
 class CentroView(ListView):
     template_name = 'pages/centros.html'
     model = Centro
-    paginate_by = 6
+    paginate_by = 8
     ordering = 'nome'
 
     def get_context_data(self, **kwargs):
@@ -193,7 +193,7 @@ class CentroView(ListView):
 class PCentro(ListView):
     template_name = 'pages/centros.html'
     model = Centro
-    paginate_by = 6
+    paginate_by = 8
     ordering = 'nome'
 
     def get_queryset(self):
@@ -202,8 +202,6 @@ class PCentro(ListView):
 
         opcao = self.request.GET.get('opcao')
         resposta = str(self.request.GET.get('resposta')).capitalize()
-        print(opcao)
-        print(resposta)
 
         if opcao == '1':
             centro = contexto.filter(nome=resposta).order_by('nome').all()
