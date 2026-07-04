@@ -24,7 +24,7 @@ def index(request):
 class MensagemView(ListView):
     template_name = 'pages/mensagem.html'
     model = Mensagem
-    paginate_by = 6
+    paginate_by = 8
     ordering = 'autor'
 
     def get_context_data(self, **kwargs):
@@ -37,7 +37,7 @@ class MensagemView(ListView):
 class PMensagem(ListView):
     template_name = 'pages/mensagem.html'
     model = Mensagem
-    paginate_by = 6
+    paginate_by = 8
     ordering = 'autor'
 
     def get_queryset(self):
@@ -67,7 +67,7 @@ def evento(request):
 class MusicaView(ListView):
     template_name = 'pages/musicas.html'
     model = Musica
-    paginate_by = 3
+    paginate_by = 8
     ordering = 'cantor'
 
     def get_context_data(self, **kwargs):
@@ -80,7 +80,7 @@ class MusicaView(ListView):
 class PMusica(ListView):
     template_name = 'pages/musicas.html'
     model = Musica
-    paginate_by = 3
+    paginate_by = 8
     ordering = 'cantor'
 
     def get_queryset(self):
@@ -105,7 +105,7 @@ class PMusica(ListView):
 class VideoView(ListView):
     template_name = 'pages/videos.html'
     model = Video
-    paginate_by = 3
+    paginate_by = 8
     ordering = 'autor'
 
     def get_context_data(self, **kwargs):
@@ -118,7 +118,7 @@ class VideoView(ListView):
 class PVideo(ListView):
     template_name = 'pages/videos.html'
     model = Video
-    paginate_by = 3
+    paginate_by = 8
     ordering = 'autor'
 
     def get_queryset(self):
