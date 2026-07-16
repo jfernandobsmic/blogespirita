@@ -92,7 +92,7 @@ class Livro(Base):
 
 class Citacao(Base):
     titulo = models.CharField('Titulo', max_length=255)
-    citacao = models.TextField('Citacao', max_length=500)
+    citacao = models.TextField('Citacao')
     autor = models.CharField('Autor', max_length=100, blank=True)
     livro_id = models.ForeignKey('core.Livro', verbose_name='Livro', on_delete=models.CASCADE)
 
